@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'Rxjs/operators';
 import { User } from '../_models/user';
 
@@ -21,6 +21,17 @@ export class AccountService {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
+        }
+      })
+    )
+  }
+
+  register(model: any): Observable<any> {
+    return this.http.post(this.baseUrl + 'account/register', model).pipe(
+      map((user:any) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user)
         }
       })
     )
