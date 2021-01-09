@@ -3,6 +3,7 @@ import { CanActivate } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 
 @Injectable({
@@ -23,9 +24,9 @@ export class AuthGuard implements CanActivate {
 
   // }
 
-  canActivate(): Observable<Boolean> {
+  canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
-      map(user => {
+      map((user: User) => {
         if (user) return true;
 
         this.toastr.error('You shall not pass!');
