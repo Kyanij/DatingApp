@@ -20,7 +20,7 @@ const routes: Routes = [
         path: 'members', component: MemberListComponent
       },
       {
-        path: 'member/:id', component: MemberDetailComponent
+        path: 'members/:username', component: MemberDetailComponent
       },
       {
         path: 'lists', component: ListsComponent
